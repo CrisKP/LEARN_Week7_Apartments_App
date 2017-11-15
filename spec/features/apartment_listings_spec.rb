@@ -28,6 +28,7 @@ RSpec.feature "ApartmentListings", type: :feature do
         fill_in 'apartment_manager', with: 'Manager name'
         fill_in 'apartment_phone', with: '619-555-5555'
         fill_in 'apartment_contact_hours', with: '9am - 5pm'
+        page.attach_file('apartment[image]', Rails.root + 'app/assets/images/apartmentx.jpg')
       end
       And "I can submit the information" do
         click_button "Create Apartment"
@@ -44,6 +45,8 @@ RSpec.feature "ApartmentListings", type: :feature do
       end
       Then "my new listing is on the index page" do
         expect(page).to have_content('619-555-5555', '9am - 5pm')
+        # expect(page).to have_xpath("//img")
+        expect(page).to have_xpath("//img[contains(@src, 'apartmentx.jpg')]")
       end
     end
   end

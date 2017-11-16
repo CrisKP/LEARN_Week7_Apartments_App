@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Apartments</h1>
+<%  if user_signed_in?%>
+  <h5> Hello, you are signed in as: <%= current_user.email%></h5>
+<% end %>
 
 <table>
   <thead>
@@ -43,10 +46,14 @@
 
 <br>
 
+<% if user_signed_in? %>
 <%= link_to 'New Apartment', new_apartment_path %>
 <br>
-<% if user_signed_in? %>
   <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
 <% else %>
+  <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %>
+  <br>
   <%= link_to 'Log in', new_user_session_path %>
+</br>
+  <%= link_to 'Sign Up', new_user_registration_path %>
 <% end %>

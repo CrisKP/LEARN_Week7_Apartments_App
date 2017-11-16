@@ -20,6 +20,7 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/1/edit
   def edit
+    # @apartment = current_user.apartments.find(params[:id])
   end
 
   # POST /apartments

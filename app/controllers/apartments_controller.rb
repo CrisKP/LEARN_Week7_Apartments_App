@@ -1,11 +1,13 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :new, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /apartments
   # GET /apartments.json
   def index
     @apartments = Apartment.all
+    @ability = Ability.new(current_user)
   end
 
   # GET /apartments/1

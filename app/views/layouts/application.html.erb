@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <p> <%  if user_signed_in?%>
+          <h5> Hello, you are signed in as: <%=current_user.email%>
+            <br>
+            <%=current_user.roles.pluck(:name)%>
+          </h5>
+        <% end %>
+    </p>
     <%= yield %>
   </body>
 </html>

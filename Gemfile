@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'paperclip'
 gem 'devise'
 gem 'omniauth-twitter'
+gem 'cancancan'
+gem 'rolify'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Apartments</h1>
-<%  if user_signed_in?%>
-  <h5> Hello, you are signed in as: <%= current_user.email%></h5>
-<% end %>
+
 
 <table>
   <thead>
@@ -35,7 +33,7 @@
         <td><%= apartment.contact_hours %></td>
         <td><%= link_to image_tag(apartment.image.url(:small)), apartment%></td>
         <td><%= link_to 'Show', apartment %></td>
-        <% if user_signed_in? %>
+        <% if @ability.can? :update, apartment, user_id: current_user.id %>
           <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
           <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -47,8 +45,8 @@
 <br>
 
 <% if user_signed_in? %>
-<%= link_to 'New Apartment', new_apartment_path %>
-<br>
+  <%= link_to 'New Apartment', new_apartment_path %>
+  <br>
   <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
 <% else %>
   <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %>

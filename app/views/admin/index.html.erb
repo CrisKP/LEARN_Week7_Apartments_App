@@ -1,0 +1,25 @@
+<h1>Users</h1>
+<table>
+  <thead>
+    <thead>
+      <tr>
+        <th>Email</th><th>Role</th>
+      </tr>
+    </thead>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+    <% if !user.roles.empty? %>
+      <td><%= user.roles.last.name %></td>
+    <% end %>
+      <td>
+        <%= form_tag("/admin/" + user.id.to_s + "?role=admin", method: :PUT) do %>
+          <input type="submit" value="Make Admin"/>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

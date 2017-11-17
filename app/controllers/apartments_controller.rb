@@ -1,7 +1,7 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :create, :new, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:basic_search]
 
   # GET /apartments
   # GET /apartments.json
@@ -65,6 +65,11 @@ class ApartmentsController < ApplicationController
     end
   end
 
+  def basic_search
+    @apartments = Apartment.basic_search(params[:search])
+    render 'basic_search'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_apartment
@@ -75,4 +80,5 @@ class ApartmentsController < ApplicationController
     def apartment_params
       params.require(:apartment).permit(:street1, :street2, :city, :postal_code, :state, :country, :manager, :phone, :contact_hours, :image)
     end
+
 end

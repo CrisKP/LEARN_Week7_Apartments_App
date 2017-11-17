@@ -17,16 +17,16 @@
   <tbody>
     <% @apartments.each do |apartment| %>
       <tr>
-        <td><%= apartment.street1 %></td>
-        <td><%= apartment.street2 %></td>
-        <td><%= apartment.city %></td>
-        <td><%= apartment.postal_code %></td>
-        <td><%= apartment.state %></td>
-        <td><%= apartment.country %></td>
-        <td><%= apartment.manager %></td>
-        <td><%= apartment.phone %></td>
-        <td><%= apartment.contact_hours %></td>
-        <td><%= link_to image_tag(apartment.image.url(:small)), apartment%></td>
+          <td><%= apartment.street1 %></td>
+          <td><%= apartment.street2 %></td>
+          <td><%= apartment.city %></td>
+          <td><%= apartment.postal_code %></td>
+          <td><%= apartment.state %></td>
+          <td><%= apartment.country %></td>
+          <td><%= apartment.manager %></td>
+          <td><%= apartment.phone %></td>
+          <td><%= apartment.contact_hours %></td>
+          <td><%= link_to image_tag(apartment.image.url(:small)), apartment%></td>
         <td><%= link_to 'Show', apartment %></td>
         <% if user_signed_in? %>
           <% if @ability.can? :update, apartment, user_id: current_user.id %>
@@ -35,6 +35,7 @@
           <% end %>
         <% end %>
       </tr>
+
     <% end %>
   </tbody>
 </table>

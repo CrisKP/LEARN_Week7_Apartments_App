@@ -50,6 +50,10 @@
   <%= link_to 'New Apartment', new_apartment_path %>
   <br>
   <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
+  <br>
+  <% if current_user.has_role? :admin %>
+      <%= link_to 'Go to admin panel', admin_path %>
+      <% end %>
 <% else %>
   <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %>
   <br>
